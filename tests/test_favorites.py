@@ -91,4 +91,3 @@ async def test_unauthorized_post_favorite(
     assert response.status_code == httpx.codes.UNAUTHORIZED, response_body
     assert response_body["error"]["message"] == UNAUTHORIZED_ERR_MSG
     assert response_body["error"]["id"]
-
