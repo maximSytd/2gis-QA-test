@@ -9,6 +9,7 @@ from .factories import COLOR_CHOICES
 BASE_URL = "https://regions-test.2gis.com"
 AUTH_URL = "/v1/auth/tokens"
 FAVORITES_URL = "/v1/favorites"
+REQUEST_TIMEOUT_SEC = 3
 
 UNAUTHORIZED_ERR_MSG = "Параметр 'token' является обязательным"
 TITLE_ERR_MSG = "Параметр 'title' должен содержать не более 999 символов"
@@ -28,7 +29,11 @@ FavoritePlaceType = dict[str, str | int]
 @asynccontextmanager
 async def client_manager(base_url: str, **kw) -> ClientManagerType:
     """Yeild httpx async client."""
-    async with httpx.AsyncClient(base_url=base_url, **kw) as c:
+    async with httpx.AsyncClient(
+        base_url=base_url,
+        timeout=REQUEST_TIMEOUT_SEC,
+        **kw,
+    ) as c:
         yield c
 
 
