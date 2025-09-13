@@ -17,3 +17,6 @@ wheels/
 
 #VS code local config
 .vscode
+
+#Bug report document
+~$bug-report.xlsx
