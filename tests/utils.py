@@ -28,7 +28,7 @@ FavoritePlaceType = dict[str, str | int]
 
 @asynccontextmanager
 async def client_manager(base_url: str, **kw) -> ClientManagerType:
-    """Yeild httpx async client."""
+    """Yield httpx async client."""
     async with httpx.AsyncClient(
         base_url=base_url,
         timeout=REQUEST_TIMEOUT_SEC,
@@ -42,6 +42,14 @@ def token_from_response(response: httpx.Response) -> str:
     set_cookie_header = response.headers.get("Set-Cookie", "")
     token_part = set_cookie_header.split("token=")[1]
     return token_part.split(";")[0]
+
+
+async def get_auth_token() -> str:
+    """Return token string from auth request headers."""
+    async with httpx.AsyncClient() as client:
+        response = await client.post(BASE_URL + AUTH_URL)
+        return token_from_response(response)
+
 
 def is_iso8601_date_string(date_string: str) -> bool:
     """Return bool and check if date string have correct iso format."""
