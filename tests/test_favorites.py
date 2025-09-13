@@ -35,8 +35,8 @@ async def test_post_favorite(
 
 
 @pytest.mark.parametrize(
-    "field, value, err_msg",
-    [
+    argnames="field, value, err_msg",
+    argvalues=[
         [
             "title", "*" * 1001, TITLE_ERR_MSG,
         ],
