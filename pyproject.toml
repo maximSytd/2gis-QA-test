@@ -5,10 +5,15 @@ description = "Test task for 2gis QA candidates"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    # fixtures replacement tool, it aims to replace static,
+    # hard to maintain fixtures with easy-to-use factories for complex objects.
     "factory-boy>=3.3.3",
     "httpx>=0.28.1",
     "pytest>=8.4.2",
     "pytest-asyncio>=1.1.0",
+    # Pytest plugin making the output look better
+    "pytest-sugar>=1.1.1",
+    # Pytest plugin allowing you to run tests in multiprocessing
     "pytest-xdist>=3.8.0",
 ]
 [tool.pytest.ini_options]
