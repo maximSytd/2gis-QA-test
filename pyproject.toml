@@ -1,6 +1,6 @@
 [project]
 name = "2gis-qa-task"
-version = "0.1.0"
+version = "1.0.0"
 description = "Test task for 2gis QA candidates"
 readme = "README.md"
 requires-python = ">=3.13"
