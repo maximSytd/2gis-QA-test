@@ -35,7 +35,7 @@ async def async_authorized_client() -> ClientManagerType:
         yield c
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="module")
 def dummy_place() -> FavoritePlaceType:
     """Return dict of dummy favorite place for tests."""
     return FavoritePlaceFactory()
