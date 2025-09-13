@@ -46,7 +46,7 @@ def token_from_response(response: httpx.Response) -> str:
 
 async def get_auth_token() -> str:
     """Return token string from auth request headers."""
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=REQUEST_TIMEOUT_SEC) as client:
         response = await client.post(BASE_URL + AUTH_URL)
         return token_from_response(response)
 
