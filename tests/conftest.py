@@ -25,7 +25,7 @@ async def async_client() -> ClientManagerType:
 
 @pytest_asyncio.fixture(scope="function")
 async def async_authorized_client() -> ClientManagerType:
-    """Return authorized with token async client."""
+    """Yield authorized async client with token."""
     async with client_manager(
         base_url=BASE_URL,
         cookies={
