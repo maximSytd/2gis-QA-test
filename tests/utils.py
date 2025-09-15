@@ -3,6 +3,7 @@ import datetime
 from contextlib import asynccontextmanager
 
 import httpx
+import httpx_retries
 
 from .factories import COLOR_CHOICES
 
@@ -10,6 +11,8 @@ BASE_URL = "https://regions-test.2gis.com"
 AUTH_URL = "/v1/auth/tokens"
 FAVORITES_URL = "/v1/favorites"
 REQUEST_TIMEOUT_SEC = 3
+MAX_RETRIES = 3
+RETRY_BACKOFF = 0.5
 
 UNAUTHORIZED_ERR_MSG = "Параметр 'token' является обязательным"
 TITLE_ERR_MSG = "Параметр 'title' должен содержать не более 999 символов"
@@ -29,8 +32,15 @@ FavoritePlaceType = dict[str, str | int]
 @asynccontextmanager
 async def client_manager(base_url: str, **kw) -> ClientManagerType:
     """Yield httpx async client."""
+    transport = httpx_retries.RetryTransport(
+        retry=httpx_retries.Retry(
+            total=MAX_RETRIES,
+            backoff_factor=RETRY_BACKOFF,
+        ),
+    )
     async with httpx.AsyncClient(
         base_url=base_url,
+        transport=transport,
         timeout=REQUEST_TIMEOUT_SEC,
         **kw,
     ) as c:
@@ -46,8 +56,8 @@ def token_from_response(response: httpx.Response) -> str:
 
 async def get_auth_token() -> str:
     """Return token string from auth request headers."""
-    async with httpx.AsyncClient(timeout=REQUEST_TIMEOUT_SEC) as client:
-        response = await client.post(BASE_URL + AUTH_URL)
+    async with client_manager(base_url=BASE_URL) as client:
+        response = await client.post(AUTH_URL)
         return token_from_response(response)
 
 
