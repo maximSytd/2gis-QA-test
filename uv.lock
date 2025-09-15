@@ -4,11 +4,12 @@ requires-python = ">=3.13"
 
 [[package]]
 name = "2gis-qa-task"
-version = "0.1.0"
+version = "1.0.0"
 source = { virtual = "." }
 dependencies = [
     { name = "factory-boy" },
     { name = "httpx" },
+    { name = "httpx-retries" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "pytest-sugar" },
@@ -19,6 +20,7 @@ dependencies = [
 requires-dist = [
     { name = "factory-boy", specifier = ">=3.3.3" },
     { name = "httpx", specifier = ">=0.28.1" },
+    { name = "httpx-retries", specifier = ">=0.4.2" },
     { name = "pytest", specifier = ">=8.4.2" },
     { name = "pytest-asyncio", specifier = ">=1.1.0" },
     { name = "pytest-sugar", specifier = ">=1.1.1" },
@@ -124,6 +126,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz", hash = "sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc", size = 141406, upload-time = "2024-12-06T15:37:23.222Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl", hash = "sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad", size = 73517, upload-time = "2024-12-06T15:37:21.509Z" },
+]
+
+[[package]]
+name = "httpx-retries"
+version = "0.4.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/9e/32/37cd73ca29912cc572cec2a79b09cb719786d22e37bf02140bc750d34b36/httpx_retries-0.4.2.tar.gz", hash = "sha256:8c32b781cf18dc9d67fc380792bf465cde107831ec1c1c504a7df6c80f06536c", size = 12607, upload-time = "2025-09-02T20:41:20.564Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a4/73/0700c81ad08787e2648de8ae69c046bdfee865216187bdd43cb2ba35b36c/httpx_retries-0.4.2-py3-none-any.whl", hash = "sha256:0393e2ee1ab7a90aa748733cc8fe8ff722f21f282fc8f8780369089918cec994", size = 8224, upload-time = "2025-09-02T20:41:19.707Z" },
 ]
 
 [[package]]

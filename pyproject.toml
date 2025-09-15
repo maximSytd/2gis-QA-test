@@ -8,7 +8,10 @@ dependencies = [
     # fixtures replacement tool, it aims to replace static,
     # hard to maintain fixtures with easy-to-use factories for complex objects.
     "factory-boy>=3.3.3",
+    # fully featured HTTP client for Python 3
     "httpx>=0.28.1",
+    # Implements request retry for HTTPX
+    "httpx-retries>=0.4.2",
     "pytest>=8.4.2",
     "pytest-asyncio>=1.1.0",
     # Pytest plugin making the output look better
