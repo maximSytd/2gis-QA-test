@@ -36,6 +36,9 @@ async def client_manager(base_url: str, **kw) -> ClientManagerType:
         retry=httpx_retries.Retry(
             total=MAX_RETRIES,
             backoff_factor=RETRY_BACKOFF,
+            allowed_methods=(
+                "POST",
+            ),
         ),
     )
     async with httpx.AsyncClient(
