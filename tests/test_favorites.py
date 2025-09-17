@@ -41,16 +41,16 @@ async def test_post_favorite(
             "title", "*" * 1001, TITLE_ERR_MSG,
         ],
         [
-            "lat", -91, LAT_LESS_ERR_MSG,
+            "lat", -90.000001, LAT_LESS_ERR_MSG,
         ],
         [
-            "lat", 91, LAT_MORE_ERR_MSG,
+            "lat", 90.000001, LAT_MORE_ERR_MSG,
         ],
         [
-            "lon", -181, LON_LESS_ERR_MSG,
+            "lon", -180.000001, LON_LESS_ERR_MSG,
         ],
         [
-            "lon", 181, LON_MORE_ERR_MSG,
+            "lon", 181.000001, LON_MORE_ERR_MSG,
         ],
         [
             "color", "black", COLOR_ERR_MSG,
