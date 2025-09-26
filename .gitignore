@@ -20,3 +20,6 @@ wheels/
 
 #Bug report document
 ~$bug-report.xlsx
+
+# Vedro files
+.vedro

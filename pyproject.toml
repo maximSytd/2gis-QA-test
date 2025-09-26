@@ -18,6 +18,10 @@ dependencies = [
     "pytest-sugar>=1.1.1",
     # Pytest plugin allowing you to run tests in multiprocessing
     "pytest-xdist>=3.8.0",
+    # Pragmatic, general‑purpose testing framework for Python
+    "vedro>=1.15.0",
+    # vedro‑httpx is an official plugin for the Vedro testing framework that wraps HTTPX
+    "vedro-httpx>=0.8.1",
 ]
 [tool.pytest.ini_options]
 addopts = [
