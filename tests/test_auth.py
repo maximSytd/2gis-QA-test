@@ -1,18 +1,28 @@
 import re
 
-import pytest
+import vedro
 import httpx
 
-from .utils import AUTH_URL
+from .interfaces.auth_api import AuthApi
 
-@pytest.mark.asyncio
-async def test_get_token(async_client: httpx.AsyncClient):
-    """Ensure that user can get auth token."""
-    response = await async_client.post(AUTH_URL)
-    token_match = re.search(
-        r"token=([a-f0-9]+);",
-        response.headers["Set-Cookie"],
-    )
-    assert response.status_code == httpx.codes.OK
-    assert token_match is not None, response.headers
-    assert "Max-Age=2" in response.headers["Set-Cookie"], response.headers
+class Scenario(vedro.Scenario):
+    subject = "Get authentication token"
+
+    async def when_user_authenticates(self):
+        self.response = await AuthApi().authenticate()
+
+    def then_it_should_return_success_response(self):
+        assert self.response.status_code == httpx.codes.OK
+
+    def then_it_should_have_token(self):
+        token_match = re.search(
+            r"token=([a-f0-9]+);",
+            self.response.headers["Set-Cookie"],
+        )
+        assert token_match is not None, self.response.headers
+
+    def then_it_should_contain_token_life_span(self):
+        assert "Max-Age=2" in self.response.headers["Set-Cookie"], (
+            self.response.headers
+        )
+
