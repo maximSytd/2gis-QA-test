@@ -5,6 +5,7 @@ description = "Test task for 2gis QA candidates"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "d42>=2.2.0",
     # fixtures replacement tool, it aims to replace static,
     # hard to maintain fixtures with easy-to-use factories for complex objects.
     "factory-boy>=3.3.3",
